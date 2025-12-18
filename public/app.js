@@ -19,10 +19,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let isLoadingData = false;
     let dataFetchTimeout = null;
 
+   //  // API Base URL
+   // const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+   //  ? 'http://localhost:5000/api'  // local development
+   //  : 'https://zydo-graduate-empowerment-system-zges.onrender.com/api'; // production
+
+
     // API Base URL
-   const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:5000/api'  // local development
-    : 'https://zydo-graduate-empowerment-system-zges.onrender.com/api'; // production
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000/api'  // local development
+  : 'https://zydo-graduate-empowerment-system-zges-1.onrender.com/api'; // production cusub
+
 
 
     // Modal functionality
