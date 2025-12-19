@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path'); // <-- 1. IMPORT THE PATH MODULE
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -83,15 +83,15 @@ app.delete('/api/graduates/:id', async (req, res) => {
 // --- Static and Catch-all Routes ---
 
 // Serve static files from the public directory
-// This should be for your frontend's static assets (JS, CSS, images)
+// This handles requests for files like /style.css, /script.js, /images/logo.png, etc.
 app.use(express.static('public'));
 
-
-// 2. THE FIX: Add a catch-all route to serve the frontend's index.html
-// This must be AFTER all your API routes.
-// The '/*' syntax is the correct way to define a wildcard in modern Express.
-app.get('/*', (req, res) => {
-  // Send the main index.html file for any non-API request
+// THE FIX: A catch-all middleware to serve the frontend's index.html
+// This must be the LAST middleware/route defined.
+// It will handle any request that hasn't been handled by the API routes or static files.
+app.use((req, res, next) => {
+  // We send the index.html file for any request that reaches here.
+  // This allows your frontend router (in app.js) to take over.
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
